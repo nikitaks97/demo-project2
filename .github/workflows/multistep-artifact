@@ -1,1 +1,56 @@
+name: Artifacts download
 
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code from GitHub
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+        working-directory: 01 Starting Project
+      - name: Lint
+        run: npm run lint
+        working-directory: 01 Starting Project
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code from GitHub
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+        working-directory: 01 Starting Project
+     - name: Run tests
+        run: npm run test
+        working-directory: 01 Starting Project
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code from GitHub
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+        working-directory: 01 Starting Project
+      - name: Build
+        run: npm run build
+        working-directory: 01 Starting Project
+      - name: Download artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: .
+   Deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code from GitHub
+        uses: actions/checkout@v4
+        with:
+          path: . 
+      - name: output contents
+        run: ls
+      - name: Deploy
+        run: echo "deploying"
