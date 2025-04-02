@@ -11,6 +11,7 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: demo-project2/01 Starting Project
 
       - name: Lint
         run: npm run lint
