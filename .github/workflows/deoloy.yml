@@ -11,11 +11,11 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: demo-project2/01 Starting Project
+        working-directory: 01 Starting Project
 
       - name: Lint
         run: npm run lint
-        working-directory: demo-project2/01 Starting Project
+        working-directory: 01 Starting Project
   test:   
     needs: lint
     runs-on: ubuntu-latest
@@ -26,7 +26,7 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm run test
-        working-directory: demo-project2/01 Starting Project
+        working-directory: 01 Starting Project
   deploy: 
     needs: test
     runs-on: ubuntu-latest
@@ -37,8 +37,8 @@ jobs:
         run: npm ci      
       - name: Build
         run: npm run build
-        working-directory: demo-project2/01 Starting Project
-      - name: Deploy
-        run: echo "deploying code.."
+        working-directory: 01 Starting Project
+      - name: Deploy to production
+        run: echo "Deploying to production..."
         
       
