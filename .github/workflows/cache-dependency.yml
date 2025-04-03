@@ -1,4 +1,4 @@
-name: Outputs
+name: Caching and using dependencies in subsequent jobs
 
 on: [push, workflow_dispatch]
 
